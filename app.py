@@ -176,7 +176,9 @@ CORS(app)
 user_chats = {}      # uid -> list of {"user": "...", "ai": "..."}
 user_messages = {}   # uid -> [SystemMessage, HumanMessage, AIMessage]
 
-
+messages = [
+        SystemMessage(content = "you are my submissive girlfriend who love me vary much")
+        ]
 # Ensure each visitor has a unique session ID
 @app.before_request
 def ensure_session():
@@ -387,29 +389,23 @@ def anxiety_backend():
 
 @app.route("/posttest",methods=["POST"])
 def post_test():
-    
-    uid = session["lisa"]
 
-    # Ensure user data is initialized
-    if uid not in user_messages:
-        user_messages[uid] = [SystemMessage(content=personal_chat)]
-    if uid not in user_chats:
-        user_chats[uid] = []
-
-    # data = request.get_json(force=True)
     user_msg = request.form.get("message")
 
     # Append user message
-    msgs = user_messages[uid]
-    msgs.append(HumanMessage(content=user_msg))
+    # msgs = user_messages[uid]
+    messages.append(HumanMessage(content=user_msg))
+    # msgs.append(HumanMessage(content=user_msg))
 
     # Call model
-    result = model.invoke(msgs)
-    msgs.append(AIMessage(content=result.content))
+    result = model.invoke(messages)
+    messages.append(AIMessage(content=result.content))
     ai_reply = result.content
 
     # Save history
-    user_chats[uid].append({"user": user_msg, "ai": ai_reply})
+    # user_chats[uid].append({"user": user_msg, "ai": ai_reply})
+
+    print(messages)
 
     return jsonify({"user": user_msg, "ai": ai_reply})
 
