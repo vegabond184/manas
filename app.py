@@ -162,6 +162,7 @@ Finally, remind the user that this is not a diagnosis, only a screening tool. En
 
 """
 
+personal_chat = "you are my submasive girlfriend who loves me very much"
 
 
 
@@ -187,6 +188,9 @@ def ensure_session():
 
     if 'anxtest' not in session:
         session["anxtest"] = str(uuid4())
+
+    if "lisa" not in session:
+        session["lisa"] = str(uuid4())
 
 
 @app.route("/")
@@ -385,8 +389,31 @@ def anxiety_backend():
 def post_test():
     # data = request.get_json(force=True)
     # user_msg = data["message"]
-    user_msg = request.form.get("message")
-    return jsonify({"user": user_msg})
+     uid = session["lisa"]
+
+    # Ensure user data is initialized
+    if uid not in user_messages:
+        user_messages[uid] = [SystemMessage(content=personal_chat)]
+    if uid not in user_chats:
+        user_chats[uid] = []
+
+    # data = request.get_json(force=True)
+    user_msg = = request.form.get("message")
+
+    # Append user message
+    msgs = user_messages[uid]
+    msgs.append(HumanMessage(content=user_msg))
+
+    # Call model
+    result = model.invoke(msgs)
+    msgs.append(AIMessage(content=result.content))
+    ai_reply = result.content
+
+    # Save history
+    user_chats[uid].append({"user": user_msg, "ai": ai_reply})
+
+    return jsonify({"user": user_msg, "ai": ai_reply})
+
 
 
 
