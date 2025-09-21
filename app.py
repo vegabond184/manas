@@ -383,8 +383,9 @@ def anxiety_backend():
 
 @app.route("/posttest",methods=["POST"])
 def post_test():
-    data = request.get_json(force=True)
-    user_msg = data["message"]
+    # data = request.get_json(force=True)
+    # user_msg = data["message"]
+    user_msg = request.form.get("message")
     return jsonify({"user": user_msg})
 
 
