@@ -385,7 +385,7 @@ def anxiety_backend():
 def post_test():
     data = request.get_json(force=True)
     user_msg = data["message"]
-    return jsonify({"user": user_msg)
+    return jsonify({"user": user_msg}})
 
 
 
