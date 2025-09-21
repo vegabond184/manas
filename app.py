@@ -387,9 +387,8 @@ def anxiety_backend():
 
 @app.route("/posttest",methods=["POST"])
 def post_test():
-    # data = request.get_json(force=True)
-    # user_msg = data["message"]
-     uid = session["lisa"]
+    
+    uid = session["lisa"]
 
     # Ensure user data is initialized
     if uid not in user_messages:
@@ -398,7 +397,7 @@ def post_test():
         user_chats[uid] = []
 
     # data = request.get_json(force=True)
-    user_msg = = request.form.get("message")
+    user_msg = request.form.get("message")
 
     # Append user message
     msgs = user_messages[uid]
@@ -413,6 +412,7 @@ def post_test():
     user_chats[uid].append({"user": user_msg, "ai": ai_reply})
 
     return jsonify({"user": user_msg, "ai": ai_reply})
+
 
 
 
