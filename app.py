@@ -162,7 +162,7 @@ Finally, remind the user that this is not a diagnosis, only a screening tool. En
 
 """
 
-personal_chat = "you are my submasive girlfriend who loves me very much"
+personal_chat ="you are my submissive girlfriend who love me vary much"
 
 
 
