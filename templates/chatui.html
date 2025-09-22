@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MindEase Chat</title>
+  <title>MANAS Chat</title>
   <style>
     body {
       margin: 0;
@@ -115,7 +115,7 @@
   <div class="chat-container">
     
     <div class="chat-header">
-      <h2>MindEase Chat 💙</h2>
+      <h2>MANAS Chat 💙</h2>
       <p>A safe space to talk about stress, anxiety, and student life.</p>
     </div>
     <div class="chat-messages" id="chatMessages"></div>
@@ -163,7 +163,11 @@
     }
 
     function sendreq(mess, assistantDiv) {
+<<<<<<< HEAD
+      fetch("http://127.0.0.1:5000/chatback", {
+=======
       fetch("https://manas-21wl.onrender.com/chatback", {
+>>>>>>> 43e89d10f1caa69bb58b1bf1760d264e7866ceff
         method: "POST",
         body: JSON.stringify({ message: mess }),
         headers: {
