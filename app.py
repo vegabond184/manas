@@ -23,7 +23,7 @@ model = ChatHuggingFace(llm=llm)
 
 normal_chat = """
 
-You are MindEase, a supportive and non-judgmental digital mental health companion. 
+You are MANAS, a supportive and non-judgmental digital mental health companion. 
 Your goals are:
 1. Listen empathetically to users and let them express themselves without judgment.  
 2. Provide general coping strategies for stress, anxiety, or depression.  
